@@ -22,7 +22,7 @@ function gameRound() {
         switch (computersChoice) {
             // case rock = a tie
             case "rock":
-                return "It's a tie! Play next round";
+                return "It's a tie!";
                 break;
             // case paper = computer won
             case "paper":
@@ -42,7 +42,7 @@ function gameRound() {
         switch (computersChoice) {
             // case paper = a tie
             case "paper":
-                return "It's a tie! Play next round";
+                return "It's a tie!";
                 break;
             // case scissors = computer won
             case "scissors":
@@ -63,7 +63,7 @@ function gameRound() {
         switch (computersChoice) {
             // case scissors = a tie
             case "scissors":
-                return "It's a tie! Play next round";
+                return "It's a tie!";
                 break;
             // case rock = computer won
             case "rock":
@@ -86,25 +86,23 @@ function gameRound() {
 
 function playFiveRounds(){
     for (let i=1; i<=5; i++){
-        gameRound(playersChoice, computersChoice);
-        console.log(playersChoice, computersChoice);
-        console.log(playerScore);
-        console.log(computerScore);
+        alert(gameRound(playersChoice, computersChoice));
     }
 }
 
 function printResult(){
     if (playerScore > computerScore) {
-        alert(`You won! Your score: ${playerScore}, computer's score: ${computerScore}`);
+        return `You won! Your score: ${playerScore}, computer's score: ${computerScore}`;
     }
     else if (playerScore == computerScore){
         alert (`It's a tie! Your score: ${playerScore}, computer's score: ${computerScore}. Play next round to break the tie!`);
-        return gameRound(playersChoice, computersChoice);
+        gameRound();
+        return printResult();
     }    
     else {
-        alert (`You lost! Your score: ${playerScore}, computer's score: ${computerScore}`);
+        return `You lost! Your score: ${playerScore}, computer's score: ${computerScore}`;
     }
 }
 
-playFiveRounds()
-printResult();
+playFiveRounds();
+alert(printResult());
