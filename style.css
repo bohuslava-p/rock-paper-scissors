@@ -2,6 +2,7 @@
 
 :root{
      --gray: #8F9BAB;
+     --light-green: #F2FCF9;
 }
 
 *, *::before, *::after{
@@ -56,7 +57,7 @@ header p{
 }
 
 .card{
-    width: 600px;
+    width: 700px;
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -72,9 +73,10 @@ header p{
 }
 .weapons{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
-.weapons img{
+.weapons img,
+#all-choices img{
     max-width: 82px;
     padding: 0.3rem;
     border-radius: 0.4rem;
@@ -88,4 +90,20 @@ header p{
 
 .weapons img:hover{
     background-color:#dee1fb;
+}
+
+#result-container{
+    background-color: var(--light-green);
+    width: 100%;
+}
+
+#result-container *
+{   
+    padding: 1rem;
+    border: 1px solid black;
+}
+
+#all-choices{
+    display: flex;
+    justify-content: space-around;
 }

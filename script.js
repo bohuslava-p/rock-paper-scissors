@@ -78,12 +78,42 @@ function gameRound(playersChoice) {
                 break;
         }
     }
-
     else console.log("error");
+
     console.log(`${playersChoice} VS ${computersChoice}`);
     console.log(`${playerScore} : ${computerScore}`);
+    printResult(playersChoice);
+    displayScore(playerScore, computerScore);
 }
 
+function printResult(playersChoice) {
+    if (playersChoice) {
+        appearImg(playersChoice); // if player made a choice print player's and computer's choice in a result box
+    }
+}
+
+function appearImg(playersChoice) { 
+    const player = document.getElementById("player-choice");
+    const computer = document.getElementById("computer-choice");
+    const playerChoiceImg = document.querySelector("#player-choice img");
+    const computersChoiceImg = document.querySelector("#computer-choice img"); 
+    if (playerChoiceImg) {
+        playerChoiceImg.remove();
+        computersChoiceImg.remove();
+    }
+    player.innerHTML = `<img src="images/${playersChoice}.png" alt="rock">`;
+    computer.innerHTML = `<img src="images/${computersChoice}.png" alt="rock">`;
+}
+
+function displayScore(playerScore, computerScore){
+    const scores = document.getElementById("scores");
+    scores.innerHTML = `${playerScore} : ${computerScore}`;
+}
+
+function printRoundResult(){
+    const roundResult = document.getElementById("round-result");
+    
+}
 
 // function printResult() {
 //     if (playerScore > computerScore) {
