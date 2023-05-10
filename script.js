@@ -9,6 +9,8 @@ let resultStr;
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
+const resultContainer = document.getElementById("result-container");
+const newGameButton = document.getElementById("new-game-button");
 
 rock.onclick = function () {
     playersChoice = "rock";
@@ -40,9 +42,17 @@ scissors.onclick = function () {
     }
 }
 
+newGameButton.onclick = function (){
+    playerScore = 0;
+    computerScore = 0;
+    document.getElementById("card").style.display = "block";
+    document.getElementById("game-over-card").style.display = "none";
+    resultContainer.style.display = "none";
+    document.querySelector("#results").innerHTML = "";
+}
 
 function gameRound(playersChoice) {
-
+    const roundResultText = document.getElementById("round-result");
     let randomIndex = Math.floor(Math.random() * 3);
     // pick word from an array with random index as a computer choice
     let choices = ["rock", "paper", "scissors"];
@@ -52,13 +62,18 @@ function gameRound(playersChoice) {
         switch (computersChoice) {
             case "rock":
                 resultStr = "It's a tie!";
+                resultContainer.style.background = "var(--light-yellow)";
+                roundResultText.style.color = "var(--yellow)";
                 break;
             case "paper":
                 computerScore++;
+                resultContainer.style.background = "var(--light-red)";
+                roundResultText.style.color = "var(--red)";
                 resultStr = "You lost! Paper covers Rock";
                 break;
             case "scissors":
                 playerScore++;
+                resultContainer.style.background = "var(--light-green)";
                 resultStr = "You won! Rock breaks Scissors";
                 break;
         }
@@ -67,13 +82,19 @@ function gameRound(playersChoice) {
         switch (computersChoice) {
             case "paper":
                 resultStr = "It's a tie!";
+                resultContainer.style.background = "var(--light-yellow)";
+                roundResultText.style.color = "var(--yellow)";
                 break;
             case "scissors":
                 computerScore++;
+                resultContainer.style.background = "var(--light-red)";
+                roundResultText.style.color = "var(--red)";
                 resultStr = "You lost! Scissors cuts Paper";
                 break;
             case "rock":
                 playerScore++;
+                resultContainer.style.background = "var(--light-green)";
+                roundResultText.style.color = "var(--green)";
                 resultStr = "You won! Paper covers Rock";
                 break;
         }
@@ -82,13 +103,19 @@ function gameRound(playersChoice) {
         switch (computersChoice) {
             case "scissors":
                 resultStr = "It's a tie!";
+                resultContainer.style.background = "var(--light-yellow)";
+                roundResultText.style.color = "var(--yellow)";
                 break;
             case "rock":
                 computerScore++;
+                resultContainer.style.background = "var(--light-red)";
+                roundResultText.style.color = "var(--red)";
                 resultStr = "You lost! Rock breaks Scissors";
                 break;
             case "paper":
                 playerScore++;
+                resultContainer.style.background = "var(--light-green)";
+                roundResultText.style.color = "var(--green)";
                 resultStr = "You won! Scissors cuts Paper";
                 break;
         }
@@ -98,6 +125,7 @@ function gameRound(playersChoice) {
 }
 
 function printResult(playersChoice) {
+    resultContainer.style.display = "block";
     const roundResult = document.getElementById("round-result");
     if (playersChoice) {
         appearImg(playersChoice); // if player made a choice print player's and computer's choice in a result box
@@ -108,14 +136,26 @@ function printResult(playersChoice) {
 function appearImg(playersChoice) { 
     const player = document.getElementById("player-choice");
     const computer = document.getElementById("computer-choice");
+
     const playerChoiceImg = document.querySelector("#player-choice img");
     const computersChoiceImg = document.querySelector("#computer-choice img"); 
+
     if (playerChoiceImg) {
         playerChoiceImg.remove();
         computersChoiceImg.remove();
     }
-    player.innerHTML = `<img src="images/${playersChoice}.png" alt="rock">`;
-    computer.innerHTML = `<img src="images/${computersChoice}.png" alt="rock">`;
+
+    const playerImgCopy = document.createElement("img");
+    playerImgCopy.setAttribute("src", `images/${playersChoice}.png`);
+    playerImgCopy.setAttribute("alt", playersChoice);
+    player.appendChild(playerImgCopy);
+
+    const computerImgCopy = document.createElement("img");
+    computerImgCopy.setAttribute("src", `images/${computersChoice}.png`);
+    computerImgCopy.setAttribute("alt", computersChoice);
+    computer.appendChild(computerImgCopy);
+    // player.innerHTML = `<img src="images/${playersChoice}.png" alt="rock">`;
+    // computer.innerHTML = `<img src="images/${computersChoice}.png" alt="rock">`;
 }
 
 function displayScore(playerScore, computerScore){
@@ -124,6 +164,9 @@ function displayScore(playerScore, computerScore){
 }
 
 function showGameEnd(){
+    document.getElementById("card").style.display = "none";
+    document.getElementById("game-over-card").style.display = "block";
+
     const results = document.getElementById("results");
 
     // create div for player game result
@@ -159,11 +202,10 @@ function showGameEnd(){
         playerResult.classList.add("loser");
         computerResult.classList.add("winner");
     }
-
-
-    playerScore = 0;
-    computerScore = 0;
 }
+
+
+
 // function printResult() {
 //     if (playerScore > computerScore) {
 //         return `You won! Your score: ${playerScore}, computer's score: ${computerScore}`;

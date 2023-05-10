@@ -6,11 +6,11 @@
 
     --light-red: #fef6f6;
     --red: #F86065;
-
     --light-green: #F2FCF9;
     --green: #02B992;
-
+    --light-yellow: #FFFBF4;
     --yellow: #FFB21E;
+
     --blue: #2D3FDB;
 
     font-size: 18px;
@@ -69,7 +69,7 @@ header p {
     text-align: center;
 }
 
-/*  ==== Game card ==== */
+/*  ==== Game rounds card ==== */
 
 .card {
     width: 750px;
@@ -91,7 +91,7 @@ header p {
 .weapons,
 #all-choices {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .weapons img,
@@ -117,18 +117,35 @@ header p {
     width: 100%;
     border-radius: 1.5rem;
     text-align: center;
+    margin-top: 1rem;
+    padding: 2rem 0;
 }
 
 #all-choices {
     align-items: center;
 }
 
-/* ==== Game over card ==== */
-.game-over-card{
+#player-choice,
+#computer-choice{
     text-align: center;
 }
 
-.game-over-card h2{
+#scores
+{
+    font-size: 2.67rem;
+    font-weight: 800;
+}
+
+#round-result{
+    font-weight: 500;
+}
+
+/* ==== Game over card ==== */
+#game-over-card{
+    text-align: center;
+}
+
+#game-over-card h2{
     font-weight: 700;
     font-size: 1.78rem;
 }
@@ -170,13 +187,13 @@ header p {
     background-color: var(--light-green);
 }
 
-.new-game-button{
+#new-game-button{
     margin-top: 1.5rem;
     line-height: 2em;
     text-decoration: none;
     color: var(--blue);
     font-weight: 600;
 }
-.new-game-button::after{
+#new-game-button::after{
 
 }
