@@ -1,48 +1,61 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,600;0,700;1,500;1,600&display=swap');
 
-:root{
-     --gray: #8F9BAB;
-     --light-green: #F2FCF9;
+:root {
+    --gray: #8F9BAB;
+    --dark-gray: #303B59;
+
+    --light-red: #fef6f6;
+    --red: #F86065;
+
+    --light-green: #F2FCF9;
+    --green: #02B992;
+
+    --yellow: #FFB21E;
+    --blue: #2D3FDB;
+
+    font-size: 18px;
 }
 
-*, *::before, *::after{
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-.red{
-    color: #F86065;
+.red {
+    color: var(--red);
 }
 
-.green{
-    color: #02B992;
+.green {
+    color: var(--green);
 }
 
-.yellow{
-    color: #FFB21E;
+.yellow {
+    color: var(--yellow);
 }
 
-
-html{
-    font-size: 18px;
-}
-
-body{
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: 'Hanken Grotesk', sans-serif;
     max-height: 100vh;
     background-color: #FAFAFA;
+    color: var(--dark-gray);
 }
-header{
+
+/* ==== header ==== */
+
+header {
     margin-bottom: 2rem;
 }
-header h1{
+
+header h1 {
     font-size: 1.8rem;
     font-weight: 600;
     font-style: italic;
@@ -51,59 +64,119 @@ header h1{
     margin-bottom: 1.9rem;
 }
 
-header p{
+header p {
     color: var(--gray);
     text-align: center;
 }
 
-.card{
-    width: 700px;
+/*  ==== Game card ==== */
+
+.card {
+    width: 750px;
     display: flex;
     flex-direction: column;
     background-color: white;
     padding: 2.3rem 4rem;
     border-radius: 1.4rem;
+    box-shadow: 0px 30px 60px rgba(61, 108, 236, 0.15);
 }
 
-.card-header{
+.card-header {
     font-weight: 700;
     font-size: 1.3em;
     text-align: center;
     margin-bottom: 1.8rem;
 }
-.weapons{
+
+.weapons,
+#all-choices {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
+
 .weapons img,
-#all-choices img{
+#all-choices img {
     max-width: 82px;
+    height: auto;
     padding: 0.3rem;
     border-radius: 0.4rem;
-    /* margin: 0 2rem; */
+    margin: 1rem 2rem;
+    align-self: center;
 }
 
-.weapons img[alt='rock']
-{
-    max-width: 89px;
+.weapons img[alt='rock'] {
+    max-width: 87px;
 }
 
-.weapons img:hover{
-    background-color:#dee1fb;
+.weapons img:hover {
+    background-color: #dee1fb;
 }
 
-#result-container{
+#result-container {
     background-color: var(--light-green);
     width: 100%;
+    border-radius: 1.5rem;
+    text-align: center;
 }
 
-#result-container *
-{   
-    padding: 1rem;
-    border: 1px solid black;
+#all-choices {
+    align-items: center;
 }
 
-#all-choices{
+/* ==== Game over card ==== */
+.game-over-card{
+    text-align: center;
+}
+
+.game-over-card h2{
+    font-weight: 700;
+    font-size: 1.78rem;
+}
+
+#results{
     display: flex;
     justify-content: space-around;
+    text-align: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.player-result,
+.computer-result{
+    padding: 2em;
+    width: 100%;
+    border-radius: 0.8rem;
+}
+
+#results p{
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5em;
+}
+
+.player-score,
+.computer-score {
+    font-size: 2.67rem;
+    font-weight: 800;
+}
+
+.loser{
+    color: var(--red);
+    background-color: var(--light-red);
+}
+
+.winner{
+    color: var(--green);
+    background-color: var(--light-green);
+}
+
+.new-game-button{
+    margin-top: 1.5rem;
+    line-height: 2em;
+    text-decoration: none;
+    color: var(--blue);
+    font-weight: 600;
+}
+.new-game-button::after{
+
 }

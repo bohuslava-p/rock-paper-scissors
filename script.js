@@ -3,92 +3,105 @@ let computerScore = 0;
 
 let playersChoice;
 let computersChoice;
+let resultStr;
+
 
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
 
 rock.onclick = function () {
-    gameRound("rock");
+    playersChoice = "rock";
+    gameRound(playersChoice);
+    printResult(playersChoice);
+    displayScore(playerScore, computerScore);
+    if(playerScore == 5 || computerScore == 5) {
+        showGameEnd(playerScore, computerScore);
+    }
 }
 
 paper.onclick = function () {
-    gameRound("paper");
+    playersChoice = "paper";
+    gameRound(playersChoice);
+    printResult(playersChoice);
+    displayScore(playerScore, computerScore);    
+    if(playerScore == 5 || computerScore == 5) {
+        showGameEnd(playerScore, computerScore);
+    }
 }
 
 scissors.onclick = function () {
-    gameRound("scissors");
+    playersChoice = "scissors";
+    gameRound(playersChoice);
+    printResult(playersChoice);
+    displayScore(playerScore, computerScore);
+    if(playerScore == 5 || computerScore == 5) {
+        showGameEnd(playerScore, computerScore);
+    }
 }
 
 
 function gameRound(playersChoice) {
-    // generate random number from 0 to 2
+
     let randomIndex = Math.floor(Math.random() * 3);
-    // pick word from an array with random index
+    // pick word from an array with random index as a computer choice
     let choices = ["rock", "paper", "scissors"];
     computersChoice = choices[randomIndex];
-
-    // if player chose rock:
+ 
     if (playersChoice === "rock") {
         switch (computersChoice) {
             case "rock":
-                // return "It's a tie!";
+                resultStr = "It's a tie!";
                 break;
             case "paper":
                 computerScore++;
-                // return "You lost! Paper covers Rock";
+                resultStr = "You lost! Paper covers Rock";
                 break;
             case "scissors":
                 playerScore++;
-                // return "You won! Rock breaks Scissors";
+                resultStr = "You won! Rock breaks Scissors";
                 break;
         }
     }
-
-    // if player chose paper:
     else if (playersChoice === "paper") {
         switch (computersChoice) {
             case "paper":
-                // return "It's a tie!";
+                resultStr = "It's a tie!";
                 break;
             case "scissors":
                 computerScore++;
-                // return "You lost! Scissors cuts Paper";
+                resultStr = "You lost! Scissors cuts Paper";
                 break;
             case "rock":
                 playerScore++;
-                // return "You won! Paper covers Rock";
+                resultStr = "You won! Paper covers Rock";
                 break;
         }
     }
-
-    // if player chose scissors:
     else if (playersChoice === "scissors") {
         switch (computersChoice) {
             case "scissors":
-                // return "It's a tie!";
+                resultStr = "It's a tie!";
                 break;
             case "rock":
                 computerScore++;
-                // return "You lost! Rock breaks Scissors";
+                resultStr = "You lost! Rock breaks Scissors";
                 break;
             case "paper":
                 playerScore++;
-                // return "You won! Scissors cuts Paper";
+                resultStr = "You won! Scissors cuts Paper";
                 break;
         }
     }
     else console.log("error");
-
-    console.log(`${playersChoice} VS ${computersChoice}`);
-    console.log(`${playerScore} : ${computerScore}`);
-    printResult(playersChoice);
-    displayScore(playerScore, computerScore);
+    return resultStr, playerScore, computerScore;
 }
 
 function printResult(playersChoice) {
+    const roundResult = document.getElementById("round-result");
     if (playersChoice) {
         appearImg(playersChoice); // if player made a choice print player's and computer's choice in a result box
+        roundResult.innerHTML = resultStr;
     }
 }
 
@@ -110,11 +123,47 @@ function displayScore(playerScore, computerScore){
     scores.innerHTML = `${playerScore} : ${computerScore}`;
 }
 
-function printRoundResult(){
-    const roundResult = document.getElementById("round-result");
-    
-}
+function showGameEnd(){
+    const results = document.getElementById("results");
 
+    // create div for player game result
+    const playerResult = document.createElement("div");
+    playerResult.setAttribute("class", "player-result");
+    const playerFinalScore = document.createElement("div");
+    const p1 = document.createElement("p");
+    p1.innerText = "Your Score:";
+    playerResult.appendChild(p1);
+    playerFinalScore.setAttribute("class", "player-score");
+    playerFinalScore.innerText = playerScore;
+    playerResult.appendChild(playerFinalScore);
+    results.appendChild(playerResult);
+
+    //create div for computer game result
+    const computerResult = document.createElement("div");
+    computerResult.setAttribute("class", "computer-result");
+    const computerFinalScore = document.createElement("div");
+    const p2 = document.createElement("p");
+    p2.innerText = "Computer Score:";
+    computerResult.appendChild(p2);
+    computerFinalScore.setAttribute("class", "computer-score");
+    computerFinalScore.innerText = computerScore;
+    computerResult.appendChild(computerFinalScore);
+    results.appendChild(computerResult);
+
+    if (playerScore > computerScore ){
+        playerResult.classList.add("winner");
+        computerResult.classList.add("loser");
+    }
+
+    else{
+        playerResult.classList.add("loser");
+        computerResult.classList.add("winner");
+    }
+
+
+    playerScore = 0;
+    computerScore = 0;
+}
 // function printResult() {
 //     if (playerScore > computerScore) {
 //         return `You won! Your score: ${playerScore}, computer's score: ${computerScore}`;
