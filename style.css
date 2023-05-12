@@ -1,6 +1,8 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,600;0,700;1,500;1,600&display=swap');
 
 :root {
+    --background: #FAFAFA;
+    --light-gray: #dee1fb;
     --gray: #8F9BAB;
     --dark-gray: #303B59;
 
@@ -45,7 +47,7 @@ body {
     align-items: center;
     font-family: 'Hanken Grotesk', sans-serif;
     max-height: 100vh;
-    background-color: #FAFAFA;
+    background-color: var(--background);
     color: var(--dark-gray);
 }
 
@@ -102,23 +104,59 @@ header p {
     border-radius: 0.4rem;
     margin: 1rem 2rem;
     align-self: center;
+    transition: 250ms background-color;
 }
 
-.weapons img[alt='rock'] {
+#rock {
+    opacity: 0;
     max-width: 87px;
 }
 
-.weapons img:hover {
-    background-color: #dee1fb;
+#paper {
+    opacity: 0;
 }
 
+#scissors {
+    opacity: 0;
+}
+
+@keyframes appear {
+    100% {
+        opacity: 100%;
+    }
+}
+
+.weapons img:hover {
+    background-color: var(--light-gray);
+    cursor: pointer;
+}
+
+
+/* ==== choice results container ==== */
+
 #result-container {
-    background-color: var(--light-green);
+    position: relative;
+    top: -50px;
     width: 100%;
     border-radius: 1.5rem;
     text-align: center;
     margin-top: 1rem;
     padding: 2rem 0;
+    animation: drop 700ms forwards ease-out;
+}
+
+@keyframes drop {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100% {
+        /* display: block; */
+        opacity: 100%;
+        transform: translateY(50px);
+    }
 }
 
 #all-choices {
@@ -128,10 +166,12 @@ header p {
 #player-choice,
 #computer-choice{
     text-align: center;
+    width: 100%;
 }
 
 #scores
 {
+    width: 100%;
     font-size: 2.67rem;
     font-weight: 800;
 }
@@ -141,6 +181,7 @@ header p {
 }
 
 /* ==== Game over card ==== */
+
 #game-over-card{
     text-align: center;
 }
@@ -148,6 +189,7 @@ header p {
 #game-over-card h2{
     font-weight: 700;
     font-size: 1.78rem;
+    margin-bottom: 2rem;
 }
 
 #results{
@@ -155,7 +197,10 @@ header p {
     justify-content: space-around;
     text-align: center;
     gap: 1rem;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
+    position: relative;
+    top: -50px;
+    animation: drop 700ms forwards ease-out;
 }
 
 .player-result,
@@ -188,12 +233,25 @@ header p {
 }
 
 #new-game-button{
-    margin-top: 1.5rem;
+    display: inline-block;
+    margin-top: 3rem;
     line-height: 2em;
     text-decoration: none;
     color: var(--blue);
     font-weight: 600;
 }
-#new-game-button::after{
 
+
+#new-game-button::after{
+    content: '';
+    display: block;
+    height: 2px;
+    background-color: blue;
+    margin: 0 auto;
+    width: 25%;
+    transition: width 500ms ease;
+}
+
+#new-game-button:hover::after {
+    width: 100%;
 }

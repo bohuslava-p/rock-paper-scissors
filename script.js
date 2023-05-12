@@ -5,7 +5,6 @@ let playersChoice;
 let computersChoice;
 let resultStr;
 
-
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
@@ -17,7 +16,7 @@ rock.onclick = function () {
     gameRound(playersChoice);
     printResult(playersChoice);
     displayScore(playerScore, computerScore);
-    if(playerScore == 5 || computerScore == 5) {
+    if (playerScore == 5 || computerScore == 5) {
         showGameEnd(playerScore, computerScore);
     }
 }
@@ -26,8 +25,8 @@ paper.onclick = function () {
     playersChoice = "paper";
     gameRound(playersChoice);
     printResult(playersChoice);
-    displayScore(playerScore, computerScore);    
-    if(playerScore == 5 || computerScore == 5) {
+    displayScore(playerScore, computerScore);
+    if (playerScore == 5 || computerScore == 5) {
         showGameEnd(playerScore, computerScore);
     }
 }
@@ -37,12 +36,12 @@ scissors.onclick = function () {
     gameRound(playersChoice);
     printResult(playersChoice);
     displayScore(playerScore, computerScore);
-    if(playerScore == 5 || computerScore == 5) {
+    if (playerScore == 5 || computerScore == 5) {
         showGameEnd(playerScore, computerScore);
     }
 }
 
-newGameButton.onclick = function (){
+newGameButton.onclick = function () {
     playerScore = 0;
     computerScore = 0;
     document.getElementById("card").style.display = "block";
@@ -51,13 +50,20 @@ newGameButton.onclick = function (){
     document.querySelector("#results").innerHTML = "";
 }
 
+window.onload = function() {
+    rock.style.animation = "appear 650ms 200ms forwards";
+    paper.style.animation = "appear 650ms 500ms forwards";
+    scissors.style.animation = "appear 650ms 900ms forwards";
+}
+
+// base game logic 
 function gameRound(playersChoice) {
     const roundResultText = document.getElementById("round-result");
     let randomIndex = Math.floor(Math.random() * 3);
-    // pick word from an array with random index as a computer choice
+    // pick a word from an array with random index as a computer choice
     let choices = ["rock", "paper", "scissors"];
     computersChoice = choices[randomIndex];
- 
+
     if (playersChoice === "rock") {
         switch (computersChoice) {
             case "rock":
@@ -124,6 +130,7 @@ function gameRound(playersChoice) {
     return resultStr, playerScore, computerScore;
 }
 
+// shows result of each round
 function printResult(playersChoice) {
     resultContainer.style.display = "block";
     const roundResult = document.getElementById("round-result");
@@ -133,12 +140,13 @@ function printResult(playersChoice) {
     }
 }
 
-function appearImg(playersChoice) { 
+// shows what player and computer chose
+function appearImg(playersChoice) {
     const player = document.getElementById("player-choice");
     const computer = document.getElementById("computer-choice");
 
     const playerChoiceImg = document.querySelector("#player-choice img");
-    const computersChoiceImg = document.querySelector("#computer-choice img"); 
+    const computersChoiceImg = document.querySelector("#computer-choice img");
 
     if (playerChoiceImg) {
         playerChoiceImg.remove();
@@ -154,16 +162,16 @@ function appearImg(playersChoice) {
     computerImgCopy.setAttribute("src", `images/${computersChoice}.png`);
     computerImgCopy.setAttribute("alt", computersChoice);
     computer.appendChild(computerImgCopy);
-    // player.innerHTML = `<img src="images/${playersChoice}.png" alt="rock">`;
-    // computer.innerHTML = `<img src="images/${computersChoice}.png" alt="rock">`;
 }
 
-function displayScore(playerScore, computerScore){
+// shows score during the game
+function displayScore(playerScore, computerScore) {
     const scores = document.getElementById("scores");
     scores.innerHTML = `${playerScore} : ${computerScore}`;
 }
 
-function showGameEnd(){
+// shows end result when game is over
+function showGameEnd() {
     document.getElementById("card").style.display = "none";
     document.getElementById("game-over-card").style.display = "block";
 
@@ -193,30 +201,18 @@ function showGameEnd(){
     computerResult.appendChild(computerFinalScore);
     results.appendChild(computerResult);
 
-    if (playerScore > computerScore ){
+    if (playerScore > computerScore) {
         playerResult.classList.add("winner");
         computerResult.classList.add("loser");
+        const winner = document.createElement("div");
+        winner.setAttribute("id", "player-winner");
+        if (document.getElementById("player-winner")) { document.getElementById("player-winner").remove(); }
+        winner.innerText = "You won! Congratulations!";
+        document.getElementById("game-over-card").insertBefore(winner, newGameButton);
     }
-
-    else{
+    else {
         playerResult.classList.add("loser");
         computerResult.classList.add("winner");
     }
 }
-
-
-
-// function printResult() {
-//     if (playerScore > computerScore) {
-//         return `You won! Your score: ${playerScore}, computer's score: ${computerScore}`;
-//     }
-//     else if (playerScore == computerScore) {
-//         alert(`It's a tie! Your score: ${playerScore}, computer's score: ${computerScore}. Play next round to break the tie!`);
-//         gameRound();
-//         return printResult();
-//     }
-//     else {
-//         return `You lost! Your score: ${playerScore}, computer's score: ${computerScore}`;
-//     }
-// }
 
