@@ -5,16 +5,13 @@
     --light-gray: #dee1fb;
     --gray: #8F9BAB;
     --dark-gray: #303B59;
-
     --light-red: #fef6f6;
     --red: #F86065;
     --light-green: #F2FCF9;
     --green: #02B992;
     --light-yellow: #FFFBF4;
     --yellow: #FFB21E;
-
     --blue: #2D3FDB;
-
     font-size: 18px;
 }
 
@@ -71,7 +68,7 @@ header p {
     text-align: center;
 }
 
-/*  ==== Game rounds card ==== */
+/*  ==== Card for game rounds ==== */
 
 .card {
     width: 750px;
@@ -104,7 +101,14 @@ header p {
     border-radius: 0.4rem;
     margin: 1rem 2rem;
     align-self: center;
+}
+.weapons img {
     transition: 250ms background-color;
+}
+
+.weapons img:hover {
+    background-color: var(--light-gray);
+    cursor: pointer;
 }
 
 #rock {
@@ -126,13 +130,7 @@ header p {
     }
 }
 
-.weapons img:hover {
-    background-color: var(--light-gray);
-    cursor: pointer;
-}
-
-
-/* ==== choice results container ==== */
+/* ==== Container with choices ==== */
 
 #result-container {
     position: relative;
@@ -153,7 +151,6 @@ header p {
         opacity: 0;
     }
     100% {
-        /* display: block; */
         opacity: 100%;
         transform: translateY(50px);
     }
@@ -162,6 +159,23 @@ header p {
 #all-choices {
     align-items: center;
 }
+
+#all-choices img {
+    animation: side-slide 700ms forwards ease-out;
+}
+
+@keyframes side-slide {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
 
 #player-choice,
 #computer-choice{

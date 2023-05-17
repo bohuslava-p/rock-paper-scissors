@@ -60,7 +60,6 @@ window.onload = function() {
 function gameRound(playersChoice) {
     const roundResultText = document.getElementById("round-result");
     let randomIndex = Math.floor(Math.random() * 3);
-    // pick a word from an array with random index as a computer choice
     let choices = ["rock", "paper", "scissors"];
     computersChoice = choices[randomIndex];
 
@@ -177,7 +176,7 @@ function showGameEnd() {
 
     const results = document.getElementById("results");
 
-    // create div for player game result
+    // create div for player's final game score
     const playerResult = document.createElement("div");
     playerResult.setAttribute("class", "player-result");
     const playerFinalScore = document.createElement("div");
@@ -189,7 +188,7 @@ function showGameEnd() {
     playerResult.appendChild(playerFinalScore);
     results.appendChild(playerResult);
 
-    //create div for computer game result
+    //create div for computer's final game score
     const computerResult = document.createElement("div");
     computerResult.setAttribute("class", "computer-result");
     const computerFinalScore = document.createElement("div");
