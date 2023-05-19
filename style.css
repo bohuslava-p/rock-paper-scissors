@@ -72,7 +72,6 @@ header p {
 /*  ==== Card for game rounds ==== */
 
 .card {
-    /* width: 43rem; */
     width: min(40rem, 95%);
     display: flex;
     flex-direction: column;

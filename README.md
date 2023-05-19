@@ -1,6 +1,4 @@
-﻿This is a classic Rock Paper Scissors game, where you can play against your computer.
-
-[👉Live Site URL👈](https://bohuslava-p.github.io/rock-paper-scissors/)
+﻿This is a classic Rock Paper Scissors game, where you can play against your computer.  [👉Live Site URL👈](https://bohuslava-p.github.io/rock-paper-scissors/)
 
 - [Overview](#overview)
     - [The challenge](#the-challenge)
