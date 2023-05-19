@@ -12,7 +12,6 @@
     --light-yellow: #FFFBF4;
     --yellow: #FFB21E;
     --blue: #2D3FDB;
-    font-size: 18px;
 }
 
 *,
@@ -46,21 +45,22 @@ body {
     max-height: 100vh;
     background-color: var(--background);
     color: var(--dark-gray);
+    font-size: 1.125rem;
 }
 
 /* ==== header ==== */
 
 header {
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
 }
 
 header h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 600;
     font-style: italic;
     text-align: center;
-    margin-top: 6rem;
-    margin-bottom: 1.9rem;
+    margin-top: 7rem;
+    margin-bottom: 1.75rem;
 }
 
 header p {
@@ -71,18 +71,18 @@ header p {
 /*  ==== Card for game rounds ==== */
 
 .card {
-    width: 750px;
+    width: 43rem;
     display: flex;
     flex-direction: column;
     background-color: white;
-    padding: 2.3rem 4rem;
-    border-radius: 1.4rem;
+    padding: 2rem;
+    border-radius: 1rem;
     box-shadow: 0px 30px 60px rgba(61, 108, 236, 0.15);
 }
 
 .card-header {
     font-weight: 700;
-    font-size: 1.3em;
+    font-size: 1.5rem;
     text-align: center;
     margin-bottom: 1.8rem;
 }
@@ -97,11 +97,17 @@ header p {
 #all-choices img {
     max-width: 82px;
     height: auto;
-    padding: 0.3rem;
-    border-radius: 0.4rem;
-    margin: 1rem 2rem;
+    padding: .3rem;
+    border-radius: 0.35rem;
+    margin: 1rem;
     align-self: center;
 }
+
+#all-choices img[alt="rock"],
+#rock {
+    max-width: 87px;
+}
+
 .weapons img {
     transition: 250ms background-color;
 }
@@ -111,20 +117,13 @@ header p {
     cursor: pointer;
 }
 
-#rock {
-    opacity: 0;
-    max-width: 87px;
-}
-
-#paper {
+#rock,
+#paper,
+#scissors{
     opacity: 0;
 }
-
-#scissors {
-    opacity: 0;
-}
-
-@keyframes appear {
+/* animation starts through js */
+@keyframes appear-start {
     100% {
         opacity: 100%;
     }
@@ -136,7 +135,7 @@ header p {
     position: relative;
     top: -50px;
     width: 100%;
-    border-radius: 1.5rem;
+    border-radius: 1rem;
     text-align: center;
     margin-top: 1rem;
     padding: 2rem 0;
@@ -144,119 +143,118 @@ header p {
 }
 
 @keyframes drop {
-    0%{
+    0% {
         opacity: 0;
     }
-    50%{
+
+    50% {
         opacity: 0;
     }
+
     100% {
         opacity: 100%;
         transform: translateY(50px);
     }
 }
 
-#all-choices {
-    align-items: center;
+#player-choice,
+#computer-choice {
+    text-align: center;
+    width: 100%;
 }
 
-#all-choices img {
-    animation: side-slide 700ms forwards ease-out;
+#scores {
+    width: 100%;
+    font-size: 3rem;
+    font-weight: 800;
+    align-self: center;
 }
 
-@keyframes side-slide {
-    0%{
+#round-result {
+    font-weight: 500;
+}
+
+#all-choices img,
+#scores {
+    animation: appear-fast 700ms forwards ease-out;
+}
+
+@keyframes appear-fast {
+    0% {
         opacity: 0;
     }
-    50%{
+
+    50% {
         opacity: 0;
     }
+
     100% {
         opacity: 100%;
     }
 }
 
-
-#player-choice,
-#computer-choice{
-    text-align: center;
-    width: 100%;
-}
-
-#scores
-{
-    width: 100%;
-    font-size: 2.67rem;
-    font-weight: 800;
-}
-
-#round-result{
-    font-weight: 500;
-}
-
 /* ==== Game over card ==== */
 
-#game-over-card{
+#game-over-card {
     text-align: center;
 }
 
-#game-over-card h2{
+#game-over-card h2 {
     font-weight: 700;
-    font-size: 1.78rem;
-    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 1.75rem;
 }
 
-#results{
+#results {
     display: flex;
     justify-content: space-around;
     text-align: center;
     gap: 1rem;
-    margin: 1.5rem 0;
+    margin: 1.2rem 0;
     position: relative;
     top: -50px;
     animation: drop 700ms forwards ease-out;
 }
 
 .player-result,
-.computer-result{
-    padding: 2em;
+.computer-result {
+    padding: 1.75em;
     width: 100%;
-    border-radius: 0.8rem;
+    border-radius: .75rem;
 }
 
-#results p{
-    font-size: 1rem;
+#results p {
+    font-size: 1.125rem;
     font-weight: 600;
     line-height: 1.5em;
 }
 
 .player-score,
 .computer-score {
-    font-size: 2.67rem;
+    font-size: 3rem;
     font-weight: 800;
 }
 
-.loser{
+.loser {
     color: var(--red);
     background-color: var(--light-red);
 }
 
-.winner{
+.winner {
     color: var(--green);
     background-color: var(--light-green);
 }
 
-#new-game-button{
+#new-game-button {
     display: inline-block;
     margin-top: 3rem;
-    line-height: 2em;
+    line-height: 2;
     text-decoration: none;
     color: var(--blue);
     font-weight: 600;
 }
 
-
-#new-game-button::after{
+#new-game-button::after {
     content: '';
     display: block;
     height: 2px;

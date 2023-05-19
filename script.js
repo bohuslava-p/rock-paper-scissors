@@ -51,9 +51,9 @@ newGameButton.onclick = function () {
 }
 
 window.onload = function() {
-    rock.style.animation = "appear 650ms 200ms forwards";
-    paper.style.animation = "appear 650ms 500ms forwards";
-    scissors.style.animation = "appear 650ms 900ms forwards";
+    rock.style.animation = "appear-start 650ms 200ms forwards";
+    paper.style.animation = "appear-start 650ms 500ms forwards";
+    scissors.style.animation = "appear-start 650ms 900ms forwards";
 }
 
 // base game logic 
@@ -166,7 +166,7 @@ function appearImg(playersChoice) {
 // shows score during the game
 function displayScore(playerScore, computerScore) {
     const scores = document.getElementById("scores");
-    scores.innerHTML = `${playerScore} : ${computerScore}`;
+    scores.innerText = `${playerScore} : ${computerScore}`;
 }
 
 // shows end result when game is over
