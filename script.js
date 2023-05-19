@@ -186,7 +186,7 @@ function showGameEnd() {
     playerResult.setAttribute("class", "player-result");
     const playerFinalScore = document.createElement("div");
     const p1 = document.createElement("p");
-    p1.innerText = "Your Score:";
+    p1.innerText = "Your score:";
     playerResult.appendChild(p1);
     playerFinalScore.setAttribute("class", "player-score");
     playerFinalScore.innerText = playerScore;
@@ -198,7 +198,7 @@ function showGameEnd() {
     computerResult.setAttribute("class", "computer-result");
     const computerFinalScore = document.createElement("div");
     const p2 = document.createElement("p");
-    p2.innerText = "Computer Score:";
+    p2.innerHTML = 'Computer<span class="mobile-hidden"> score</span>:';
     computerResult.appendChild(p2);
     computerFinalScore.setAttribute("class", "computer-score");
     computerFinalScore.innerText = computerScore;
