@@ -165,8 +165,13 @@ function appearImg(playersChoice) {
 
 // shows score during the game
 function displayScore(playerScore, computerScore) {
-    const scores = document.getElementById("scores");
-    scores.innerText = `${playerScore} : ${computerScore}`;
+    if (document.querySelector("#scores")) {document.querySelector("#scores").remove()};
+    const scores = document.createElement("div");
+    scores.setAttribute("id", "scores");
+    let allChoices = document.getElementById("all-choices");
+    allChoices.insertBefore(scores, document.getElementById("computer-choice"));
+    const textNode = document.createTextNode(`${playerScore} : ${computerScore}`);
+    scores.appendChild(textNode);
 }
 
 // shows end result when game is over
