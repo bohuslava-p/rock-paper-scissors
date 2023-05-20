@@ -42,7 +42,6 @@ body {
     flex-direction: column;
     align-items: center;
     font-family: 'Hanken Grotesk', sans-serif;
-    max-height: 100svh;
     background-color: var(--background);
     color: var(--dark-gray);
     font-size: 1.125rem;
@@ -291,7 +290,6 @@ header p {
     }
 
     .card {
-        /* width: 95vw; */
         padding: 1rem;
     }
 
