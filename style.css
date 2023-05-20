@@ -213,6 +213,7 @@ header p {
 }
 
 #results {
+    opacity: 0;
     display: flex;
     justify-content: space-around;
     text-align: center;
